@@ -128,6 +128,72 @@ const csvData = [{ id: "42", name: "Bruce", occupation: "Knight", age: "41" },
 
 
     //3)//Map the array to change the “occupation” key to “job” and increment every age by 1.
-    
-    
 
+
+const updatedData = csvData.map(item => {
+    // Create a new object with the updated key and incremented age.
+    // Converted age from string to number, add 1, then converted back to a string 
+    return {
+      id: item.id,
+      name: item.name,
+      job: item.occupation, // Renamed occupation to job.
+      age: String(Number(item.age) + 1) // Incremented age by 1 and keep it as a string
+    };
+  });
+  
+  console.log(updatedData);
+
+
+
+//4)//Use the reduce method to calculate the sum of the ages.
+//Then use the result to calculate the average age.
+
+
+//For each person, we convert person.age "a string" to a number using Number(person.age) 
+// and added it in total starting at index 0.
+const sumOfAges = updatedData.reduce((total, person) => total + Number(person.age), 0);
+const averageAge = sumOfAges / updatedData.length;
+
+console.log("Sum of Ages:", sumOfAges);
+console.log("Average Age:", averageAge);
+
+
+
+
+            //Part 3: Thinking Critically
+            //wrote up 2 functions for using objects by reference and copies of objects
+
+
+            // Function 1: this function Checks to see if the 'age' property exists. if not, it sets the age to 0
+    function incrementAge(obj) {
+    if (('age' in obj) === false) {
+      obj.age = 0;
+    }
+    // Converts age to a number and increment it by 1.
+    obj.age = Number(obj.age) + 1;   //changing the data of age in the original object and incrementing them by 1.
+    obj.updated_at = new Date();    // Updated the "updated_at" field with the current date and time.
+    return obj;
+  }
+
+  
+  // Function 2: Create a copy of the object, then increment the age in the copy
+  function copyAndIncrementAge(obj) {
+    // Created a copy of the object so that the original object data won't be affected.
+    const newObj = { ...obj };
+  
+    // Check if the "age" property does not exist in the copy.
+    if (("age" in newObj) === false) {
+      newObj.age = 0;
+    }
+    // Convert age to a number and increment by 1.
+    newObj.age = Number(newObj.age) + 1;
+    
+    // Created a new Date object for updated_at to avoid sharing the reference and changing the original time in the object.
+    newObj.updated_at = new Date();
+    return newObj;
+  }
+
+
+
+
+  
