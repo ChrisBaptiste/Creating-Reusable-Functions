@@ -69,9 +69,65 @@ function findLongestString(characters) {
   let favoriteRestaurant = ["Shake Shack", "Popeyes", "KFC", "Sky View", "In-N-Out", "Beast Burger"];
 
   //this function takes 2 parameters. one for the array of restaurants and the othe for num
-  //.filter() array method helps us pick only the names that are longer than the given number.
+  //the .filter() array method picks only the names that are longer than the given number.
 //The function returns a new array with only the names that passed the length test
 function stringsLongerThanNum(restaurants, num) {
     return restaurants.filter(restaurant => restaurant.length > num);
 }
 console.log(stringsLongerThanNum(favoriteRestaurant, 6));
+
+
+
+
+
+//5)// using a recursive function that calls itself n times and starting at 1
+function printNumbers(n, current = 1) {
+    if (current > n) {
+        return; // Stops when current is greater than n
+    }
+    
+    console.log(current); 
+    
+    printNumbers(n, current + 1); // current + 1 increase the current number by 1 until it reaches n number
+}
+printNumbers(15);
+
+
+
+
+
+                        //Part 2: Thinking Methodically
+const csvData = [{ id: "42", name: "Bruce", occupation: "Knight", age: "41" },
+    { id: "48", name: "Barry", occupation: "Runner", age: "25" },
+    { id: "57", name: "Bob", occupation: "Fry Cook", age: "19" },
+    { id: "63", name: "Blaine", occupation: "Quiz Master", age: "58" },
+    { id: "7", name: "Bilbo", occupation: "None", age: "111" }]
+
+
+    //1)//sorting the aray data by age.
+    csvData.sort((a, b) => {
+        let ageA = parseInt(a.age); // the parseInt method Convert age from a string to a number for object 'a'
+        let ageB = parseInt(b.age); // Convert age from string to number for object 'b'
+    
+        return ageA - ageB; // Sorting the ages in the aray from smallest to largest
+    });
+    console.log(csvData);
+
+
+
+//2)//Filter the array to remove entries with an age greater than 50.
+
+//using a function with a default parameter of 50 to filter out anyone who is 50 or over
+    function RemoveAgeAbove50(ages, num = 50) {
+        return ages.filter(person => parseInt(person.age) <= num);  //parseInt method conversts the ages in the array to numbers
+    }
+    
+    const filteredData = RemoveAgeAbove50(csvData); //trying out the default value in the parameter
+    console.log(filteredData);
+
+
+
+    //3)//Map the array to change the “occupation” key to “job” and increment every age by 1.
+    
+    
+
